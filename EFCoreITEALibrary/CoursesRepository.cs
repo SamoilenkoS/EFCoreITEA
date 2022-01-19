@@ -1,6 +1,7 @@
 ﻿using EFCoreITEALibrary.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EFCoreITEALibrary
 {
@@ -13,12 +14,12 @@ namespace EFCoreITEALibrary
             _connectionString = connectionString;
         }
 
-        public void Create(Course course)
+        public async Task Create(Course course)
         {
             using (var context = new SchoolContext(_connectionString))
             {
                 context.Courses.Add(course);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
